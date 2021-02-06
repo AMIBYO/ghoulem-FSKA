@@ -31,7 +31,7 @@ spec:                              # Access mode and resource limits
 apiVersion: v1                    # API version
 kind: Service                     # Type of kubernetes resource 
 metadata:
-  name: polling-app-mysql         # Name of the resource
+  name: database         # Name of the resource
   labels:                         # Labels that will be applied to the resource
     app: polling-app
 spec:
@@ -45,10 +45,11 @@ spec:
 apiVersion: apps/v1
 kind: Deployment                    # Type of the kubernetes resource
 metadata:
-  name: polling-app-mysql           # Name of the deployment
+  name: database           # Name of the deployment
   labels:                           # Labels applied to this deployment 
     app: polling-app
 spec:
+  #replicas: 3
   selector:
     matchLabels:                    # This deployment applies to the Pods matching the specified labels
       app: polling-app
@@ -62,8 +63,12 @@ spec:
         tier: mysql
     spec:                           # The spec for the containers that will be run inside the Pods in this deployment
       containers:
-      - image: mysql:5.6            # The container image
+      - image: mysql:5.6          # The container image
         name: mysql
+      #  resources:
+       #   limits:
+        #    cpu: 0.4
+         #   memory: "500Mi" 
         env:                        # Environment variables passed to the container 
         - name: MYSQL_ROOT_PASSWORD 
           valueFrom:                # Read environment variables from kubernetes secrets
@@ -85,6 +90,7 @@ spec:
             secretKeyRef:
               name: mysql-user-pass
               key: password
+             
         ports:
         - containerPort: 3306        # The port that the container exposes       
           name: mysql

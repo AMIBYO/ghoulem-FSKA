@@ -73,6 +73,15 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
+		
+		
+   
+    
+    
+    
+    
+    
 	<dependency>
     <groupId>org.hibernate</groupId>
     <artifactId>hibernate-core</artifactId>
@@ -91,6 +100,22 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			
+			
+			
+			
+	 <plugin>
+      <groupId>com.google.cloud.tools</groupId>
+      <artifactId>appengine-maven-plugin</artifactId>
+      <version>1.3.2</version>
+      <configuration>
+        <version>1</version>
+      </configuration>
+    </plugin>
+        
+        
+        
+        
 		</plugins>
 	</build>
 
